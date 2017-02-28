@@ -8,7 +8,7 @@ var Input = React.createClass({
     propTypes: {
         name: React.PropTypes.string.isRequired,
         label: React.PropTypes.string.isRequired,
-        onChane: React.PropTypes.func.isRequired,
+        onChange: React.PropTypes.func.isRequired,
         placeholder: React.PropTypes.string,
         value: React.PropTypes.string,
         error: React.PropTypes.string
