@@ -16,9 +16,31 @@ var ManageAuthorPage = React.createClass({
     ],
     getInitialState: function () {
         return {
-            author: {id: '', firstName: '', lastName: ''}
+            author: {id: '', firstName: '', lastName: ''},
+            errors : {}
         };
     },
+
+    authorFormIsValid: function () {
+        var formIsValid = true;
+        this.state.errors = {}; //clear any previous err
+
+        if(this.state.author.firstName.length<3){
+            this.state.errors.firstName = "First Name must be at least 3 characters";
+            formIsValid = false;
+        }
+        if(this.state.author.lastName.length<3){
+            this.state.errors.lastName = "Last Name must be at least 3 characters";
+            formIsValid = false;
+
+        }
+
+        this.setState({errors : this.state.errors});
+
+        return formIsValid;
+
+    }
+    ,
     setAuthorState: function (event) {
         var field = event.target.name;
         var value = event.target.value;
@@ -27,8 +49,13 @@ var ManageAuthorPage = React.createClass({
     },
     saveAuthor: function (event) {
         event.preventDefault();
-        AuthorApi.saveAuthor(this.state.author);
 
+        if(!this.authorFormIsValid())
+        {
+            return;
+        }
+
+        AuthorApi.saveAuthor(this.state.author);
         toastr.success('Author saved. ');
         this.transitionTo('authors');
     },
@@ -39,6 +66,7 @@ var ManageAuthorPage = React.createClass({
                 author={this.state.author}
                 onChange={this.setAuthorState}
                 onSave={this.saveAuthor}
+                errors={this.state.errors}
             />
         );
     }

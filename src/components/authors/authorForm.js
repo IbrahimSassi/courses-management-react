@@ -16,6 +16,7 @@ var AuthorForm = React.createClass({
                     name="firstName"
                     onChange={this.props.onChange}
                     value={this.props.author.firstName}
+                    error = {this.props.errors.firstName}
                 />
                 <br/>
                 <Input
@@ -23,6 +24,8 @@ var AuthorForm = React.createClass({
                     name="lastName"
                     onChange={this.props.onChange}
                     value={this.props.author.lastName}
+                    error={this.props.errors.lastName}
+
                 />
                 <br/>
                 <input type="submit" value="Save"
