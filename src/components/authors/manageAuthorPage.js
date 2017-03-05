@@ -31,12 +31,11 @@ var ManageAuthorPage = React.createClass({
         };
     },
 
-    componentWillMount:function () {
+    componentWillMount: function () {
         var authorId = this.props.params.id; //from path /author:id
 
-        if(authorId)
-        {
-            this.setState({author:AuthorApi.getAuthorById(authorId)});
+        if (authorId) {
+            this.setState({author: AuthorApi.getAuthorById(authorId)});
         }
     }
     ,
