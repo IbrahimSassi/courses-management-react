@@ -13,7 +13,7 @@ var authorActions = {
 
 
         //Hey Dispatcher , go tell all the stores that an author has just created
-        Dispatcher.dispach({
+        Dispatcher.dispatch({
             actionType: ActionsTypes.CREATE_AUTHOR,
             author: newAuthor
         });
