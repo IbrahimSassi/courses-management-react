@@ -18,18 +18,23 @@ var AuthorPage = React.createClass({
         };
     },
 
-    ComponentWillMount: function () {
-        AuthorStore.addChangeListener(this._onChange());
-
-    },
-    ComponentWillUnmount: function () {
-        AuthorStore.removeChangeListener(this._onChange());
-
+    componentWillMount: function() {
+        AuthorStore.addChangeListener(this._onChange);
     },
 
-    _onChange: function () {
-        this.setState({authors: AuthorStore.getAllAuthors()})
+    //Clean up when this component is unmounted
+    componentWillUnmount: function() {
+        AuthorStore.removeChangeListener(this._onChange);
     },
+
+    _onChange: function() {
+        debugger;
+        this.setState({ authors: AuthorStore.getAllAuthors() });
+    },
+
+
+
+
 
     // componentDidMount: function () {
     //     if (this.isMounted()) {

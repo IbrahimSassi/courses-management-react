@@ -16,6 +16,7 @@ var AuthorStore = assign({}, EventEmitter.prototype, {
     addChangeListener: function (callback) {
         this.on(CHANGE_EVENT, callback);
     },
+
     removeChangeListener: function (callback) {
         this.removeListener(CHANGE_EVENT, callback);
     },
@@ -54,6 +55,13 @@ Dispatcher.register(function (action) {
 
             break;
 
+        case ActionsTypes.DELETE_AUTHOR:
+            debugger;
+            _.remove(_authors, function (author) {
+                return action.id === author.id;
+            });
+            AuthorStore.emitChange();
+            break;
         default:
         //no op
     }
