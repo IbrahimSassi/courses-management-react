@@ -18,6 +18,7 @@ var ManageAuthorPage = React.createClass({
 
     statics: {
         willTransitionFrom: function (transition, component) {
+            console.log(transition);
             if (component.state.dirty && !confirm('Leave without saving ?')) {
                 transition.abort();
             }
@@ -70,16 +71,24 @@ var ManageAuthorPage = React.createClass({
     },
     saveAuthor: function (event) {
         event.preventDefault();
-
         if (!this.authorFormIsValid()) {
             return;
         }
 
-        // AuthorApi.saveAuthor(this.state.author);
-        AuthorActions.createAuthor(this.state.author);
-        this.setState({dirty: false});
+        if (this.state.author.id) {
+            AuthorActions.updateAuthor(this.state.author);
+        }
+
+        else {
+
+            // AuthorApi.saveAuthor(this.state.author);
+            AuthorActions.createAuthor(this.state.author);
+            this.setState({dirty: false});
+        }
         toastr.success('Author saved. ');
         this.transitionTo('authors');
+
+
     },
 
     render: function () {

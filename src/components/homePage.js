@@ -10,7 +10,7 @@ var Home = React.createClass({
             <div className="jumbotron">
                 <h1> Please Guys</h1>
                 <p> My First Components </p>
-                <Link to="about" ClassName="btn btn-primary btn-lg"> Learn More </Link>
+                <Link to="about" className="btn btn-primary btn-lg"> Learn More </Link>
             </div>
         );
     }
