@@ -18,6 +18,19 @@ var AuthorPage = React.createClass({
         };
     },
 
+    ComponentWillMount: function () {
+        AuthorStore.addChangeListener(this._onChange());
+
+    },
+    ComponentWillUnmount: function () {
+        AuthorStore.removeChangeListener(this._onChange());
+
+    },
+
+    _onChange: function () {
+        this.setState({authors: AuthorStore.getAllAuthors()})
+    },
+
     // componentDidMount: function () {
     //     if (this.isMounted()) {
     //         this.setState({authors: });
@@ -30,7 +43,7 @@ var AuthorPage = React.createClass({
         return (
             <div>
                 <h1>Authors</h1>
-                <Link to="addAuthor" className="btn btn-default" >Add Author</Link>
+                <Link to="addAuthor" className="btn btn-default">Add Author</Link>
                 <AuthorList authors={this.state.authors}/>
 
 
